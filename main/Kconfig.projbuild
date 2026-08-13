@@ -1,0 +1,111 @@
+menu "ESP32 API LED Example Configuration"
+
+    config APP_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "YOUR_WIFI_SSID"
+        help
+            Wi-Fi network SSID.
+
+    config APP_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default "YOUR_WIFI_PASSWORD"
+        help
+            Wi-Fi network password.
+
+    config APP_WIFI_MAX_RETRIES
+        int "Wi-Fi maximum retries"
+        range 1 100
+        default 10
+        help
+            Maximum number of Wi-Fi reconnection attempts.
+
+    config APP_WIFI_RETRY_DELAY_MS
+        int "Wi-Fi retry delay (ms)"
+        range 100 60000
+        default 2000
+        help
+            Delay between Wi-Fi reconnection attempts.
+
+    config APP_API_URL
+        string "Endpoint API URL"
+        default "https://example.com/endpoint"
+        help
+            HTTPS endpoint returning JSON containing the configured
+            JSON field.
+
+    config APP_API_JSON_FIELD
+        string "JSON value field"
+        default "value"
+        help
+            JSON field containing the integer value.
+
+    config APP_HTTP_TIMEOUT_MS
+        int "HTTP timeout (ms)"
+        range 1000 120000
+        default 10000
+        help
+            HTTPS request timeout.
+
+    config APP_RESPONSE_BUFFER_SIZE
+        int "HTTP response buffer size"
+        range 128 65536
+        default 1024
+        help
+            Maximum size of the HTTP response JSON document.
+
+    config APP_SNTP_SERVER
+        string "SNTP server"
+        default "pool.ntp.org"
+        help
+            NTP server used for system time synchronization.
+
+    config APP_SNTP_MAX_RETRIES
+        int "SNTP maximum retries"
+        range 1 100
+        default 10
+        help
+            Maximum number of attempts to synchronize system time.
+
+    config APP_SNTP_RETRY_DELAY_MS
+        int "SNTP retry delay (ms)"
+        range 100 60000
+        default 2000
+        help
+            Delay between SNTP synchronization attempts.
+
+    config APP_TIMEZONE
+        string "Time zone"
+        default "UTC0"
+        help
+            POSIX TZ string used for local time conversion.
+
+    config APP_LED_GPIO_PIN
+        int "LED GPIO pin"
+        range 0 38
+        default 2
+        help
+            GPIO number connected to the status LED.
+
+    config APP_LED_ACTIVE_LOW
+        bool "LED is active-low"
+        default n
+        help
+            Enable if the LED turns ON when GPIO is driven LOW.
+
+    config APP_LED_THRESHOLD
+        int "LED threshold value"
+        range -2147483648 2147483647
+        default 3
+        help
+            Integer threshold for the LED decision.
+            If the API value is strictly less than this threshold,
+            the LED is switched OFF. Otherwise it is switched ON.
+
+    config APP_LOOP_INTERVAL_MS
+        int "Loop interval (ms)"
+        range 1000 3600000
+        default 10000
+        help
+            Delay between successive API requests.
+
+endmenu

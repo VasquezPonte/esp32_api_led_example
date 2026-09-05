@@ -1,6 +1,6 @@
 # ESP32 API LED Example
 
-This example extends the **ESP32 HTTPS Client Example** to periodically query a REST API. Based on a configurable integer threshold, the application automatically turns an onboard or external LED on or off.
+This example extends the **ESP32 HTTPS Client Example** to periodically query a HTTPS API endpoint. Based on a configurable integer threshold, the application automatically turns an onboard or external LED on or off.
 
 For detailed setup requirements (Wi-Fi, certificates, and TLS configuration), please refer to the base `README.md` file of the [ESP32 HTTPS Client Example](https://github.com/VasquezPonte/esp32_https_client_example).
 

@@ -25,6 +25,7 @@
 
 #include "driver/gpio.h"
 #include "esp_log.h"
+#include "esp_err.h"
 #include "nvs_flash.h"
 
 #include "wifi_manager.h"
@@ -123,8 +124,7 @@ static app_state_t state_wifi_connect(app_context_t *ctx)
         return STATE_DELAY;
     }
 
-    wifi_result_t result = wifi_manager_wait_for_connection(
-        pdMS_TO_TICKS(30000)); /* 30 s timeout */
+    wifi_result_t result = wifi_manager_wait_for_connection(30000); /* 30 s timeout */
 
     if (result != WIFI_RESULT_OK) {
         ESP_LOGE(TAG, "Wi-Fi connection failed (result=%d)", result);
@@ -224,6 +224,7 @@ static app_state_t state_delay(app_context_t *ctx)
 
 static app_state_t state_shutdown(app_context_t *ctx)
 {
+    (void)ctx;
     ESP_LOGI(TAG, "STATE: SHUTDOWN");
     led_set(false);
     wifi_manager_stop();

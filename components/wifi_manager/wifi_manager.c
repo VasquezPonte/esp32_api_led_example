@@ -26,6 +26,8 @@ static bool               s_connected;
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data)
 {
+    (void)arg;
+
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         ESP_LOGI(TAG, "STA start, connecting...");
         esp_err_t err = esp_wifi_connect();
@@ -58,8 +60,8 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         const ip_event_got_ip_t *event =
             (const ip_event_got_ip_t *)event_data;
 
-            s_connected = true;
-            s_retry_count = 0;
+        s_connected = true;
+        s_retry_count = 0;
 
         ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
         xEventGroupSetBits(s_event_group, WIFI_CONNECTED_BIT);
